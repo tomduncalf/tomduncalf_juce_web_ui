@@ -20,7 +20,7 @@ namespace BrowserIntegration
         BrowserIntegrationClient (juce::String clientName, BrowserIntegration& browserIntegration);
 
         void registerBrowserCallback (juce::String name, BrowserCallback callback);
-        void sendEventToBrowser (juce::String eventName, juce::var data);
+        void sendEventToBrowser (juce::String eventType, juce::var data);
 
     protected:
         juce::String clientName;

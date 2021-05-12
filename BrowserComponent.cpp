@@ -21,6 +21,8 @@ namespace BrowserIntegration
     {
         const auto jsonMessage = juce::JSON::toString (message, true);
         const auto url = "javascript:" + jsCallbackName + "(" + jsonMessage + ")";
+
+        DBG ("sendMessage: " << jsonMessage);
         goToURL (url);
     }
 
@@ -49,5 +51,5 @@ namespace BrowserIntegration
     {
         onMessageCallback = cb;
     }
-} // namespace BrowserIntegration
-} // namespace tomduncalf
+}// namespace BrowserIntegration
+}// namespace tomduncalf

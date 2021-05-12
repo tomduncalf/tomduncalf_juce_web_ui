@@ -13,16 +13,17 @@ namespace tomduncalf
 namespace BrowserIntegration
 {
     BrowserIntegrationClient::BrowserIntegrationClient (juce::String n, BrowserIntegration& b)
-        : clientName (n), browserIntegration (b) {}
+        : clientName (n),
+          browserIntegration (b) {}
 
     void BrowserIntegrationClient::registerBrowserCallback (juce::String name, BrowserCallback callback)
     {
         browserIntegration.registerBrowserCallback (clientName + "::" + name, callback);
     }
 
-    void BrowserIntegrationClient::sendEventToBrowser (juce::String eventName, juce::var data)
+    void BrowserIntegrationClient::sendEventToBrowser (juce::String eventType, juce::var data)
     {
-        // TOOD
+        browserIntegration.sendEventToBrowser (clientName + "::" + eventType, data);
     }
-} // namespace BrowserIntegration
-} // namespace tomduncalf
+}// namespace BrowserIntegration
+}// namespace tomduncalf
