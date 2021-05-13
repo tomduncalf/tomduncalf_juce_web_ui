@@ -41,7 +41,7 @@ namespace BrowserIntegration
     {
         if (! message.hasProperty ("eventType"))
         {
-            jassertfalse;// malformed message
+            jassertfalse; // malformed message
             return;
         }
 

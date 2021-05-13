@@ -134,6 +134,8 @@ export const PARAMETER_IDS = [
         jassert (tsFile.existsAsFile());
 
         tsFile.replaceWithText (output);
+
+        DBG ("Parmeter types writen to parameters.ts");
     }
 }
 }

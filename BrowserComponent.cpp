@@ -32,7 +32,11 @@ namespace BrowserIntegration
         {
             if (onMessageCallback)
             {
-                auto message = juce::JSON::parse (juce::URL::removeEscapeChars (newURL.substring (urlSchema.length())));
+                auto messageString = juce::URL::removeEscapeChars (newURL.substring (urlSchema.length()));
+                auto message = juce::JSON::parse (messageString);
+
+                DBG ("message: " << messageString);
+
                 onMessageCallback (message);
             }
             else
