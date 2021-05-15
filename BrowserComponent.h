@@ -17,6 +17,13 @@ namespace BrowserIntegration
     class BrowserComponent : public juce::WindowsWebView2WebBrowserComponent
     {
     public:
+        /** Create a browser component with the default URL (in debug mode, loading
+        rom the React dev server, and in release mode, loading from the built
+        application bundle in the Resources directory)
+        */
+        BrowserComponent();
+
+        /** Create a browser component with a specific URL */
         BrowserComponent (const juce::String initialUrl);
 
         void sendMessage (const juce::var message);

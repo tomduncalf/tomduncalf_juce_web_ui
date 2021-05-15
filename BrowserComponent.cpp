@@ -12,6 +12,22 @@ namespace tomduncalf
 {
 namespace BrowserIntegration
 {
+    BrowserComponent::BrowserComponent()
+    {
+#if JUCE_DEBUG
+        goToURL ("http://127.0.0.1:3000");
+#else
+        goToURL ("file://" + juce::File::getSpecialLocation (juce::File::SpecialLocationType::currentApplicationFile)
+#if JUCE_MAC
+                                 .getChildFile ("Contents")
+#endif
+                                 .getChildFile ("Resources")
+                                 .getChildFile ("build")
+                                 .getChildFile ("index.html")
+                                 .getFullPathName());
+#endif
+    }
+
     BrowserComponent::BrowserComponent (juce::String initialUrl)
     {
         goToURL (initialUrl);
