@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    BrowserValueTreeSynchroniser.cpp
-    Created: 10 May 2021 3:04:24pm
-    Author:  Tom Duncalf
-
-  ==============================================================================
-*/
-
 namespace tomduncalf
 {
 namespace BrowserIntegration

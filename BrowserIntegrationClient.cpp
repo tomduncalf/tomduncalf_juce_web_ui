@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    BrowserIntegrationClient.cpp
-    Created: 10 May 2021 3:56:20pm
-    Author:  Tom Duncalf
-
-  ==============================================================================
-*/
-
 namespace tomduncalf
 {
 namespace BrowserIntegration
@@ -21,9 +11,9 @@ namespace BrowserIntegration
         browserIntegration.registerBrowserCallback (clientName + "::" + name, callback);
     }
 
-    void BrowserIntegrationClient::sendEventToBrowser (juce::String eventType, juce::var data)
+    void BrowserIntegrationClient::sendEventToBrowser (juce::String eventType, juce::var data, bool suppressLog)
     {
-        browserIntegration.sendEventToBrowser (clientName + "::" + eventType, data);
+        browserIntegration.sendEventToBrowser (clientName + "::" + eventType, data, suppressLog);
     }
 }// namespace BrowserIntegration
 }// namespace tomduncalf

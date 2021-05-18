@@ -1,13 +1,11 @@
-/*
-  ==============================================================================
+/**
+ A BrowserIntegration instance wraps a BrowserComponent, providing methods
+ to send JSON messages (wrapped in a juce::var) and register callbacks for
+ receiving events from Javascript.
 
-    BrowserIntegration.h
-    Created: 10 May 2021 4:14:34pm
-    Author:  Tom Duncalf
-
-  ==============================================================================
-*/
-
+ Usually you will want to construct a single BrowserIntegration instance and
+ pass a reference down to any other classes that want to interact with it.
+ */
 #pragma once
 
 namespace tomduncalf
@@ -22,7 +20,7 @@ namespace BrowserIntegration
         BrowserIntegration (BrowserComponent& browser);
 
         void registerBrowserCallback (juce::String name, BrowserCallback callback);
-        void sendEventToBrowser (juce::String evenType, juce::var data);
+        void sendEventToBrowser (juce::String eventType, juce::var data, bool suppressLog = false);
 
     protected:
         void handleMessage (juce::var message);

@@ -1,31 +1,31 @@
-/*
-  ==============================================================================
-
-    WebBrowserComponent.cpp
-    Created: 10 May 2021 9:03:23am
-    Author:  Tom Duncalf
-
-  ==============================================================================
-*/
-
 namespace tomduncalf
 {
 namespace BrowserIntegration
 {
     BrowserComponent::BrowserComponent()
     {
-#if JUCE_DEBUG
-        goToURL ("http://127.0.0.1:3000");
+#if JUCE_MAC || JUCE_IOS
+        NSString* devServerIpNsString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"DevServerIP"];
+        auto devServerIp = [devServerIpNsString UTF8String];
 #else
-        goToURL ("file://" + juce::File::getSpecialLocation (juce::File::SpecialLocationType::currentApplicationFile)
+        auto devServerIp = "127.0.0.1";
+#endif
+
+#if JUCE_DEBUG
+        auto url = juce::String ("http://") + devServerIp + ":3000";
+#else
+        auto url = "file://" + juce::File::getSpecialLocation (juce::File::SpecialLocationType::currentApplicationFile)
 #if JUCE_MAC
-                                 .getChildFile ("Contents")
+                                   .getChildFile ("Contents")
 #endif
-                                 .getChildFile ("Resources")
-                                 .getChildFile ("build")
-                                 .getChildFile ("index.html")
-                                 .getFullPathName());
+                                   .getChildFile ("Resources")
+                                   .getChildFile ("build")
+                                   .getChildFile ("index.html")
+                                   .getFullPathName();
 #endif
+
+        DBG ("Loading URL: " + url);
+        goToURL (url);
     }
 
     BrowserComponent::BrowserComponent (juce::String initialUrl)
@@ -33,12 +33,14 @@ namespace BrowserIntegration
         goToURL (initialUrl);
     }
 
-    void BrowserComponent::sendMessage (const juce::var message)
+    void BrowserComponent::sendMessage (const juce::var message, bool suppressLog)
     {
         const auto jsonMessage = juce::JSON::toString (message, true);
         const auto url = "javascript:" + jsCallbackName + "(" + jsonMessage + ")";
 
-        DBG ("sendMessage: " << jsonMessage);
+        if (! suppressLog)
+            DBG ("sendMessage: " << jsonMessage);
+
         goToURL (url);
     }
 

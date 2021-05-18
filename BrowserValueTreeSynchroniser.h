@@ -1,13 +1,8 @@
-/*
-  ==============================================================================
-
-    BrowserValueTreeSynchroniser.h
-    Created: 10 May 2021 3:04:24pm
-    Author:  Tom Duncalf
-
-  ==============================================================================
-*/
-
+/**
+ BrowerValueTreeSynchroniser is a juce::ValueTreeSynchroniser which sends
+ its sync messages to a BrowserIntegration, for them to then be decoded
+ on the JS side so it can maintain a copy of the value tree.
+ */
 #pragma once
 
 namespace tomduncalf

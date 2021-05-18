@@ -74,7 +74,7 @@ namespace BrowserIntegration
 
         sendEventToBrowser ("parameterMetadata", parameterInfos);
 
-#if JUCE_DEBUG && BROWSER_INTEGRATION_WRITE_PARAMETER_CONFIG_IN_DEBUG
+#if JUCE_DEBUG && BROWSER_INTEGRATION_WRITE_PARAMETER_CONFIG_IN_DEBUG && !(JUCE_IOS || JUCE_ANDROID)
         writeParameterConfigForTs (parameterInfos);
 #endif
     }

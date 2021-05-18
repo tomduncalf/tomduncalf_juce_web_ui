@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    BrowserIntegration.cpp
-    Created: 10 May 2021 4:14:34pm
-    Author:  Tom Duncalf
-
-  ==============================================================================
-*/
-
 namespace tomduncalf
 {
 namespace BrowserIntegration
@@ -28,13 +18,13 @@ namespace BrowserIntegration
             callbacksByEventName[name] = { callback };
     }
 
-    void BrowserIntegration::sendEventToBrowser (juce::String eventType, juce::var data)
+    void BrowserIntegration::sendEventToBrowser (juce::String eventType, juce::var data, bool suppressLog)
     {
         auto* obj = new juce::DynamicObject();
         obj->setProperty ("eventType", eventType);
         obj->setProperty ("data", data);
 
-        browser.sendMessage (juce::var (obj));
+        browser.sendMessage (juce::var (obj), suppressLog);
     }
 
     void BrowserIntegration::handleMessage (juce::var message)
