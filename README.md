@@ -65,4 +65,5 @@ The difficulty often comes with combining and interacting between two separate w
 - [ ] Proper typing of "choice" components
 - [ ] Allow the web UI to be run in the browser for easier development (maybe using a snapshot of the parameter value tree?)
 - [ ] iOS AUv3 support (right now the browser won't load the UI, hopefully just needs some security entitlements)
+- [ ] Code review C++ (check for appropriate use of const, pass by reference, etc)
 - [ ] Lots more!
