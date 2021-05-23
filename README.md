@@ -22,7 +22,7 @@ Experimental, Work in progress - I have a [basic example](https://github.com/tom
 
 ## Key components:
 
-- A [browser component](https://github.com/tomduncalf/tomduncalf_juce_browser_integration/blob/main/BrowserComponent.h) which supports sending messages to and from a web browser, using a custom `juce://` URL schema (eventually I would like to use direct callbacks to/from the browser engine for potential performance improvements, but this requires JUCE changes to support).
+- A [browser component](https://github.com/tomduncalf/tomduncalf_juce_browser_integration/blob/main/BrowserComponent.h) which supports sending messages to and from a web browser, using JUCE's support for calling Javascript functions directly to call into the browser, and a custom `juce://` URL schema to call back to C++ (eventually I would like to use direct callbacks from the browser engine for potential performance improvements, but this requires JUCE changes to support).
 
 - A [base class](https://github.com/tomduncalf/tomduncalf_juce_browser_integration/blob/main/BrowserIntegrationClient.h) for any classes which want to communicate with the browser, allowing sending messages and registering callbacks in a namespaced way.
 
