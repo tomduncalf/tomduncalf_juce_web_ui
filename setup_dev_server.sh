@@ -1,8 +1,7 @@
 # Only start the dev server in debug mode, and for the "Shared Code" target of the build
 # (Xcode will try to run the script twice, once for the Shared Code and once for the actual build)
 if [ "$CONFIGURATION" == "Debug" ] &&  [[ $TARGET_NAME == *" - Shared Code" ]]; then
-  /usr/libexec/PlistBuddy -c "Set :DevServerIP `ipconfig getifaddr en0`" "${TARGET_BUILD_DIR}/../../Info-Standalone_Plugin.plist"
-# echo  /usr/libexec/PlistBuddy -c "Set :DevServerIP `ipconfig getifaddr en0`" "${TARGET_BUILD_DIR}/../../Info-Standalone_Plugin.plist"
+  for i in "${TARGET_BUILD_DIR}/../../"*.plist; do /usr/libexec/PlistBuddy -c "Set :DevServerIP `ipconfig getifaddr en0`" "$i"; done
 
   if nc -w 5 -z localhost 3000 ; then
     if ! curl -s "http://localhost:3000/" ; then
