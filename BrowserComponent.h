@@ -33,6 +33,8 @@ namespace BrowserIntegration
 
         const juce::String urlSchema = "juce://";
         const juce::String jsCallbackName = "receiveMessageFromJuce";
+        
+        void scriptMessageReceived (const juce::var messageBody) override;
     };
 }// namespace BrowserIntegration
 }// namespace tomduncalf

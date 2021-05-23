@@ -16,7 +16,7 @@ namespace BrowserIntegration
     {
 #if JUCE_MAC || JUCE_IOS
         NSString* devServerIpNsString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"DevServerIP"];
-        // TODO [NSBundle mainBundle] refers to the plugin host when running as AudioUnit 
+        // TODO [NSBundle mainBundle] refers to the plugin host when running as AudioUnit
         // so can't access plist - hardcoding for now
         auto devServerIp = devServerIpNsString == nil ? "127.0.0.1" : [devServerIpNsString UTF8String];
 #else
@@ -79,6 +79,11 @@ namespace BrowserIntegration
     void BrowserComponent::setOnMessageCallback (std::function<void (juce::var)> cb)
     {
         onMessageCallback = cb;
+    }
+
+    void BrowserComponent::scriptMessageReceived (const juce::var messageBody)
+    {
+        onMessageCallback (messageBody);
     }
 }// namespace BrowserIntegration
 }// namespace tomduncalf
