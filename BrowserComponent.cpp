@@ -2,12 +2,12 @@ namespace tomduncalf
 {
 namespace BrowserIntegration
 {
-    BrowserComponent::BrowserComponent()
+    BrowserComponent::BrowserComponent(): juce::WindowsWebView2WebBrowserComponent (false)
     {
         loadUI();
     }
 
-    BrowserComponent::BrowserComponent (juce::String initialUrl)
+    BrowserComponent::BrowserComponent (juce::String initialUrl): juce::WindowsWebView2WebBrowserComponent (false)
     {
         goToURL (initialUrl);
     }

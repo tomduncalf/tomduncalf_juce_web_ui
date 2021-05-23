@@ -25,7 +25,7 @@ namespace BrowserIntegration
         bool pageAboutToLoad (const juce::String& newURL) override;
 
         void setOnMessageCallback (std::function<void (juce::var)> cb);
-        
+
         void loadUI();
 
     protected:
