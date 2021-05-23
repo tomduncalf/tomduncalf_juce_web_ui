@@ -16,7 +16,9 @@ namespace BrowserIntegration
     {
 #if JUCE_MAC || JUCE_IOS
         NSString* devServerIpNsString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"DevServerIP"];
-        auto devServerIp = [devServerIpNsString UTF8String];
+        // TODO [NSBundle mainBundle] refers to the plugin host when running as AudioUnit 
+        // so can't access plist - hardcoding for now
+        auto devServerIp = devServerIpNsString == nil ? "127.0.0.1" : [devServerIpNsString UTF8String];
 #else
         auto devServerIp = "127.0.0.1";
 #endif
