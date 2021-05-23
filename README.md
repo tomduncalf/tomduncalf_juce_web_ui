@@ -8,7 +8,7 @@ Ultimately the integration will be cross-platform on both desktop and mobile, bu
 
 ## Status
 
-Work in progress - I have a [basic example](https://github.com/tomduncalf/WebUISynth) working, but need to add more features, documentation and a tutorial. Should not be considered stable in terms of APIs. See [TODO](#TODO).
+Experimental, Work in progress - I have a [basic example](https://github.com/tomduncalf/WebUISynth) working, but need to add more features, documentation and a tutorial. Should not be considered stable in terms of APIs. See [TODO](#TODO).
 
 ## Features
 
