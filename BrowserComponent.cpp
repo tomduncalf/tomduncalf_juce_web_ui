@@ -4,6 +4,16 @@ namespace BrowserIntegration
 {
     BrowserComponent::BrowserComponent()
     {
+        loadUI();
+    }
+
+    BrowserComponent::BrowserComponent (juce::String initialUrl)
+    {
+        goToURL (initialUrl);
+    }
+
+    void BrowserComponent::loadUI()
+    {
 #if JUCE_MAC || JUCE_IOS
         NSString* devServerIpNsString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"DevServerIP"];
         auto devServerIp = [devServerIpNsString UTF8String];
@@ -26,11 +36,6 @@ namespace BrowserIntegration
 
         DBG ("Loading URL: " + url);
         goToURL (url);
-    }
-
-    BrowserComponent::BrowserComponent (juce::String initialUrl)
-    {
-        goToURL (initialUrl);
     }
 
     void BrowserComponent::sendMessage (const juce::var message, bool suppressLog)
