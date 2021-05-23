@@ -22,7 +22,7 @@ Experimental, Work in progress - I have a [basic example](https://github.com/tom
 
 ## Key components:
 
-- A [browser component](https://github.com/tomduncalf/tomduncalf_juce_browser_integration/blob/main/BrowserComponent.h) which supports sending messages to and from a web browser, using JUCE's support for calling Javascript functions directly to call into the browser, and a custom `juce://` URL schema to call back to C++ (eventually I would like to use direct callbacks from the browser engine for potential performance improvements, but this requires JUCE changes to support).
+- A [browser component](https://github.com/tomduncalf/tomduncalf_juce_browser_integration/blob/main/BrowserComponent.h) which supports sending messages to and from a web browser, using JUCE's support for calling Javascript functions directly to call into the browser, and custom additions to JUCE to allow sending messages directly back to C++ (needs to be integrated into JUCE - for now, requires using my fork and is Mac/iOS only - but greatly improves performance e.g. with multi touch updates).
 
 - A [base class](https://github.com/tomduncalf/tomduncalf_juce_browser_integration/blob/main/BrowserIntegrationClient.h) for any classes which want to communicate with the browser, allowing sending messages and registering callbacks in a namespaced way.
 
@@ -59,7 +59,6 @@ The difficulty often comes with combining and interacting between two separate w
 - [ ] Modularise supporting TypeScript code into an npm package
 - [ ] Always run callbacks on the message thread?
 - [ ] Send begin/end paramter change gesture messages
-- [ ] Investigate using browser callbacks to pass messages rather than custom URL schema (will require JUCE changes)
 - [ ] Cross-platform support
 - [ ] Use the parameter metadata sent across from JUCE to set min, max, etc. on components
 - [ ] Proper typing of "choice" components
