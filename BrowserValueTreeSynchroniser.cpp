@@ -2,14 +2,14 @@ namespace tomduncalf
 {
 namespace BrowserIntegration
 {
-#define VALUE_TREE_SYNCHRONISER_BATCH_CHANGES 0
+#define VALUE_TREE_SYNCHRONISER_BATCH_CHANGES 1
 
     BrowserValueTreeSynchroniser::BrowserValueTreeSynchroniser (juce::ValueTree& vt, juce::Identifier id, BrowserIntegration& b)
         : juce::ValueTreeSynchroniser (vt),
           treeId (id),
           browserIntegration (b)
     {
-        startTimerHz (30);
+        startTimerHz (60);
     }
 
     void BrowserValueTreeSynchroniser::stateChanged (const void* encodedChange, size_t encodedChangeSize)
@@ -20,7 +20,7 @@ namespace BrowserIntegration
         queuedChanges.add (change);
 
 #if VALUE_TREE_SYNCHRONISER_BATCH_CHANGES
-        // do nothing?
+        // Do nothing, the timer will pick this up
 #else
         flushUpdates();
 #endif
