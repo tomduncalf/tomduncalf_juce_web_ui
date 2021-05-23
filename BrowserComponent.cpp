@@ -23,14 +23,14 @@ namespace BrowserIntegration
         auto devServerIp = "127.0.0.1";
 #endif
 
-#if JUCE_DEBUG
+#if BROWSER_INTEGRATION_USE_DEV_SERVER_IN_DEBUG && JUCE_DEBUG
         auto url = juce::String ("http://") + devServerIp + ":3000";
 #else
         auto url = "file://" + juce::File::getSpecialLocation (juce::File::SpecialLocationType::currentApplicationFile)
 #if JUCE_MAC
                                    .getChildFile ("Contents")
-#endif
                                    .getChildFile ("Resources")
+#endif
                                    .getChildFile ("build")
                                    .getChildFile ("index.html")
                                    .getFullPathName();
