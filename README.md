@@ -4,7 +4,7 @@ tomduncalf_juce_browser_integration is a JUCE module providing helper classes to
 
 **Please see https://github.com/tomduncalf/WebUISynth for an example integration with a simple synth engine.**
 
-Ultimately the integration will be cross-platform on both desktop and mobile, but right now it has only been tested on macOS and iOS (where it currently works standalone but not as an AUv3).
+Ultimately the integration will be cross-platform on both desktop and mobile, but right now it has only been tested on macOS and iOS.
 
 ## Status
 
@@ -64,6 +64,5 @@ The difficulty often comes with combining and interacting between two separate w
 - [ ] Use the parameter metadata sent across from JUCE to set min, max, etc. on components
 - [ ] Proper typing of "choice" components
 - [ ] Allow the web UI to be run in the browser for easier development (maybe using a snapshot of the parameter value tree?)
-- [ ] iOS AUv3 support (right now the browser won't load the UI, hopefully just needs some security entitlements)
 - [ ] Code review C++ (check for appropriate use of const, pass by reference, etc)
 - [ ] Lots more!
