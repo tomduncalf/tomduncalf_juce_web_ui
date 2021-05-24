@@ -8,7 +8,9 @@ Ultimately the integration will be cross-platform on both desktop and mobile, bu
 
 ## Status
 
-Experimental, Work in progress - I have a [basic example](https://github.com/tomduncalf/WebUISynth) working, but need to add more features, documentation and a tutorial. Should not be considered stable in terms of APIs. See [TODO](#TODO).
+Experimental, Work in progress - I have a [basic example](https://github.com/tomduncalf/WebUISynth) working, but need to add more features, documentation and a tutorial. Should not be considered stable in terms of APIs.
+
+See [the project board](https://github.com/tomduncalf/tomduncalf_juce_browser_integration/projects/2) for a list of tasks.
 
 ## Features
 
@@ -53,17 +55,3 @@ If you are happy to build for just one platform, native frameworks offer a bette
 JavaScript (and in particular React) is widely known and fairly easy to learn. Browser engines are incredibly powerful and remarkably performant, so in theory there's no reason why they shouldn't be suitable for building UIs for audio apps and plugins – indeed, a developer from Output spoke about their experiences building their Arcade plugin using web UI at [ADC'20](https://www.youtube.com/watch?v=XvsCaQd2VFE]).
 
 The difficulty often comes with combining and interacting between two separate worlds – you have to worry about keeping state in sync, how to pass messages between JS and C++, etc. This module aims to solve those problems as elegantly as possible, so you can focus on writing great software.
-
-## TODO
-
-- [ ] Documentation
-- [ ] Tutorial
-- [ ] Modularise supporting TypeScript code into an npm package
-- [ ] Always run callbacks on the message thread?
-- [ ] Send begin/end paramter change gesture messages
-- [ ] Cross-platform support
-- [ ] Use the parameter metadata sent across from JUCE to set min, max, etc. on components
-- [ ] Proper typing of "choice" components
-- [ ] Allow the web UI to be run in the browser for easier development (maybe using a snapshot of the parameter value tree?)
-- [ ] Code review C++ (check for appropriate use of const, pass by reference, etc)
-- [ ] Lots more!
