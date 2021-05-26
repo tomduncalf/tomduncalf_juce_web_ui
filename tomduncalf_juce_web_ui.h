@@ -1,11 +1,11 @@
 /** BEGIN_JUCE_MODULE_DECLARATION
 
-ID:             tomduncalf_juce_browser_integration
+ID:             tomduncalf_juce_web_ui
 vendor:         tom@tomduncalf.com
 version:        0.0.1
 name:           JUCE Browser Integration
 description:    Provides helpers to integrate web-based UIs into a JUCE application
-website:        https://github.com/tomduncalf/tomduncalf_juce_browser_integration
+website:        https://github.com/tomduncalf/tomduncalf_juce_web_ui
 license:        MIT
 
 dependencies:   juce_core, juce_gui_extra, juce_audio_processors
