@@ -1,4 +1,4 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSBundle.h>
 
-#include "tomduncalf_juce_browser_integration.cpp"
+#include "tomduncalf_juce_web_ui.cpp"

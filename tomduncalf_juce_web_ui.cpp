@@ -1,4 +1,4 @@
-#include "tomduncalf_juce_browser_integration.h"
+#include "tomduncalf_juce_web_ui.h"
 
 #include "BrowserComponent.cpp"
 #include "BrowserIntegration.cpp"

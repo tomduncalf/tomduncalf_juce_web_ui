@@ -1,6 +1,6 @@
-# tomduncalf_juce_browser_integration
+# tomduncalf_juce_web_ui
 
-tomduncalf_juce_browser_integration is a JUCE module providing helper classes to make it easy to integrate a web-based UI (running in a JUCE WebBrowserComponent) with a JUCE application (e.g. an audio engine).
+tomduncalf_juce_web_ui is a JUCE module providing helper classes to make it easy to integrate a web-based UI (running in a JUCE WebBrowserComponent) with a JUCE application (e.g. an audio engine).
 
 **Please see https://github.com/tomduncalf/WebUISynth for an example integration with a simple synth engine.**
 
@@ -10,7 +10,7 @@ Ultimately the integration will be cross-platform on both desktop and mobile, bu
 
 Experimental, Work in progress - I have a [basic example](https://github.com/tomduncalf/WebUISynth) working, but need to add more features, documentation and a tutorial. Should not be considered stable in terms of APIs.
 
-See [the project board](https://github.com/tomduncalf/tomduncalf_juce_browser_integration/projects/2) for a list of tasks.
+See [the project board](https://github.com/tomduncalf/tomduncalf_juce_web_ui/projects/2) for a list of tasks.
 
 ## Features
 
@@ -24,23 +24,23 @@ See [the project board](https://github.com/tomduncalf/tomduncalf_juce_browser_in
 
 ## Key components:
 
-- A [browser component](https://github.com/tomduncalf/tomduncalf_juce_browser_integration/blob/main/BrowserComponent.h) which supports sending messages to and from a web browser, using JUCE's support for calling Javascript functions directly to call into the browser, and custom additions to JUCE to allow sending messages directly back to C++ (needs to be integrated into JUCE - for now, requires using my fork and is Mac/iOS only - but greatly improves performance e.g. with multi touch updates).
+- A [browser component](https://github.com/tomduncalf/tomduncalf_juce_web_ui/blob/main/BrowserComponent.h) which supports sending messages to and from a web browser, using JUCE's support for calling Javascript functions directly to call into the browser, and custom additions to JUCE to allow sending messages directly back to C++ (needs to be integrated into JUCE - for now, requires using my fork and is Mac/iOS only - but greatly improves performance e.g. with multi touch updates).
 
-- A [base class](https://github.com/tomduncalf/tomduncalf_juce_browser_integration/blob/main/BrowserIntegrationClient.h) for any classes which want to communicate with the browser, allowing sending messages and registering callbacks in a namespaced way.
+- A [base class](https://github.com/tomduncalf/tomduncalf_juce_web_ui/blob/main/BrowserIntegrationClient.h) for any classes which want to communicate with the browser, allowing sending messages and registering callbacks in a namespaced way.
 
-- Automatic one-way state synchronisation from JUCE ValueTrees to a JS representation using a [ValueTreeSynchroniser](https://github.com/tomduncalf/tomduncalf_juce_browser_integration/blob/main/BrowserValueTreeSynchroniser.h) and a [TypeScript implementation](https://github.com/tomduncalf/WebUISynth/tree/main/ui/src/juceIntegration/valueTree) of the ValueTreeSynchroniser protocol and [ValueTree class](https://github.com/tomduncalf/WebUISynth/blob/a49c101dc078e8d41d63fed16fb40570db49bdcd/ui/src/juceIntegration/valueTree/ValueTree.ts).
+- Automatic one-way state synchronisation from JUCE ValueTrees to a JS representation using a [ValueTreeSynchroniser](https://github.com/tomduncalf/tomduncalf_juce_web_ui/blob/main/BrowserValueTreeSynchroniser.h) and a [TypeScript implementation](https://github.com/tomduncalf/WebUISynth/tree/main/ui/src/juceIntegration/valueTree) of the ValueTreeSynchroniser protocol and [ValueTree class](https://github.com/tomduncalf/WebUISynth/blob/a49c101dc078e8d41d63fed16fb40570db49bdcd/ui/src/juceIntegration/valueTree/ValueTree.ts).
 
   The synchronisation is batched into one message per frame (at 60hz) to reduce redundant messages back and forth - however, there's room for more optimisation here!
 
-- A [base class](https://github.com/tomduncalf/tomduncalf_juce_browser_integration/blob/main/BrowserIntegrationPluginClient.h) for plugins which automatically handles synchonising the plugins AudioProcessorValueTreeState to the browser, and [corresponding models](https://github.com/tomduncalf/WebUISynth/blob/main/ui/src/juceIntegration/models/) on the JS side which provide a representation of the parameters, with getters and setters for easy modification.
+- A [base class](https://github.com/tomduncalf/tomduncalf_juce_web_ui/blob/main/BrowserIntegrationPluginClient.h) for plugins which automatically handles synchonising the plugins AudioProcessorValueTreeState to the browser, and [corresponding models](https://github.com/tomduncalf/WebUISynth/blob/main/ui/src/juceIntegration/models/) on the JS side which provide a representation of the parameters, with getters and setters for easy modification.
 
   [Auto-generated TypeScript definitions](https://github.com/tomduncalf/WebUISynth/blob/main/ui/src/config/autogenerated/parameters.ts) for your parameters (generated when run in debug mode) reduces the amount of manual integration to a minimum, and the use of MobX means keeping your UI reactive is simply a case of adding [observer](https://github.com/tomduncalf/WebUISynth/blob/main/ui/src/components/ParameterSlider.tsx#L13) to React components and accessing `Parameters` [from React's Context API](https://github.com/tomduncalf/WebUISynth/blob/a49c101dc078e8d41d63fed16fb40570db49bdcd/ui/src/components/Parameters.tsx#L7).
 
-- Lightweight mechanism for communicating between [TypeScript](https://github.com/tomduncalf/WebUISynth/blob/main/ui/src/juceIntegration/juceCommunication.ts#L8) and [C++](https://github.com/tomduncalf/tomduncalf_juce_browser_integration/blob/main/BrowserIntegrationClient.h#L21) by sending messages and registering callbacks.
+- Lightweight mechanism for communicating between [TypeScript](https://github.com/tomduncalf/WebUISynth/blob/main/ui/src/juceIntegration/juceCommunication.ts#L8) and [C++](https://github.com/tomduncalf/tomduncalf_juce_web_ui/blob/main/BrowserIntegrationClient.h#L21) by sending messages and registering callbacks.
 
   For an example of C++ to browser communication, see the implementation of the Scope in [C++](https://github.com/tomduncalf/WebUISynth/blob/a49c101dc078e8d41d63fed16fb40570db49bdcd/Source/ScopeDataSender.h#L61) and [TypeScript](https://github.com/tomduncalf/WebUISynth/blob/a49c101dc078e8d41d63fed16fb40570db49bdcd/ui/src/components/Scope.tsx#L7).
 
-  For an example of browser to C++ communication, see the implementation of setting parameters in [C++](https://github.com/tomduncalf/tomduncalf_juce_browser_integration/blob/862a2706417f8acc568a0c62a2b028d8b8dfc699/BrowserIntegrationPluginClient.cpp#L27) and [TypeScript](https://github.com/tomduncalf/WebUISynth/blob/a49c101dc078e8d41d63fed16fb40570db49bdcd/ui/src/juceIntegration/messages/pluginMessages.ts#L4).
+  For an example of browser to C++ communication, see the implementation of setting parameters in [C++](https://github.com/tomduncalf/tomduncalf_juce_web_ui/blob/862a2706417f8acc568a0c62a2b028d8b8dfc699/BrowserIntegrationPluginClient.cpp#L27) and [TypeScript](https://github.com/tomduncalf/WebUISynth/blob/a49c101dc078e8d41d63fed16fb40570db49bdcd/ui/src/juceIntegration/messages/pluginMessages.ts#L4).
 
 ## Documentation
 
